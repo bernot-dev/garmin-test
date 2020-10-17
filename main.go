@@ -70,7 +70,15 @@ func main() {
 	http.HandleFunc("/login", handleGarminLogin)
 	http.HandleFunc("/callback", handleGarminCallback)
 	http.HandleFunc("/push/dailies", HandleDailies)
-	err := http.ListenAndServe(":80", nil)
+
+	effectivePort := "80"
+	envPort, ok := os.LookupEnv("PORT")
+	if ok {
+		effectivePort = envPort
+	}
+
+	fmt.Printf("Listening on port %s", effectivePort)
+	err := http.ListenAndServe(fmt.Sprintf(":%s", effectivePort), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
