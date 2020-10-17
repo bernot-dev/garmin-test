@@ -70,7 +70,7 @@ func main() {
 	http.HandleFunc("/login", handleGarminLogin)
 	http.HandleFunc("/callback", handleGarminCallback)
 	http.HandleFunc("/push/dailies", HandleDailies)
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
