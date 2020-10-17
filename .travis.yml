@@ -5,5 +5,5 @@ services:
 
 before_install:
   - echo $GCP_AR_KEY | docker login -u _json_key --password-stdin us-east1-docker.pkg.dev
-  - docker build -t us-east1-docker.pkg.dev/bernot-dev/garmin-test/latest .
-  - docker push us-east1-docker.pkg.dev/bernot-dev/garmin-test/latest
+  - docker build -t us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test .
+  - docker push us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test
