@@ -1,10 +1,13 @@
 {
   "name": "garmin-test",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Garmin API Test",
   "scripts": {
     "test": "go test -v ./...",
-    "travis-tag": "export TRAVIS_TAG=$npm_package_version"
+    "docker-build": "docker build -t us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test .",
+    "docker-tag": "docker tag us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test:$npm_package_version",
+    "docker-push": "docker push us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test",
+    "docker-deploy": "npm run docker-build && npm run docker-tag && npm run docker-push"
   },
   "repository": {
     "type": "git",
@@ -18,9 +21,27 @@
   "homepage": "https://github.com/bernot-dev/garmin-test#readme",
   "private": true,
   "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
     "semantic-release": "^17.2.1"
   },
   "release": {
-    "branches": ["main"]
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "dist/**/*.{js,css}",
+            "docs",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
   }
 }
