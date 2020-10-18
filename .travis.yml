@@ -9,6 +9,8 @@ branches:
 
 before_install:
   - nvm install lts/*
+
+before_script:
   - npx semantic-release
   - echo $GCP_AR_KEY | docker login -u _json_key --password-stdin us-east1-docker.pkg.dev
 
