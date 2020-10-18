@@ -28,7 +28,7 @@ func init() {
 
 func handleMain(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Handle Main")
-	var body = `<html><body><a href="/login">Login</a></body></html>`
+	var body = `<html><body><a href="/login">Login with Garmin</a></body></html>`
 	fmt.Fprintf(w, body)
 }
 
