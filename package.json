@@ -1,0 +1,26 @@
+{
+  "name": "garmin-test",
+  "version": "0.1.0",
+  "description": "Garmin API Test",
+  "scripts": {
+    "test": "go test -v ./..."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bernot-dev/garmin-test.git"
+  },
+  "author": "adam@bernot.dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bernot-dev/garmin-test/issues"
+  },
+  "homepage": "https://github.com/bernot-dev/garmin-test#readme",
+  "private": true,
+  "devDependencies": {
+    "semantic-release": "^17.2.1"
+  },
+  "release": {
+    "branches": ["main"],
+    "plugins": ["@semantic-release/commit-analyzer", "@semantic-release/release-notes-generator", "@semantic-release/github"]
+  }
+}
