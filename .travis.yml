@@ -6,9 +6,12 @@ services:
 
 jobs:
   include:
-    - stage: Test
+    - stage: Test and Release
       name: Go Test
-      script: go test -v ./...
+      script:
+        - go test -v ./...
+        - nvm install lts/*
+        - npx semantic-release
     - stage: Docker Build and Push
       script:
         - echo $GCP_AR_KEY | docker login -u _json_key --password-stdin us-east1-docker.pkg.dev
