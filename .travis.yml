@@ -16,4 +16,5 @@ jobs:
       script:
         - echo $GCP_AR_KEY | docker login -u _json_key --password-stdin us-east1-docker.pkg.dev
         - docker build -t us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test .
+        - docker tag us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test:$TRAVIS_TAG
         - docker push us-east1-docker.pkg.dev/bernot-dev/garmin-test/garmin-test
